@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                // Checkout code from the Git repository
+                bat 'echo Checking out'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build the Java application
+                bat 'java -version'
+                bat 'javac -version'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Deploy the application
+                bat 'echo Deploying the application'
+            }
+        }
+    }
+}
