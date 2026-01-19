@@ -1,28 +1,29 @@
 pipeline {
-    agent any
+    agent { label 'slave-1' }
 
     stages {
 
         stage('Checkout') {
             steps {
-                // Checkout code from the Git repository
-                bat 'echo Checking out'
+                git branch: 'main',
+                    url: 'https://github.com/gauravpanwar8909/jenkins-.git'
             }
         }
 
         stage('Build') {
             steps {
-                // Build the Java application
-                bat 'java -version'
-                bat 'javac -version'
+                sh '''
+                cd my-app
+                mvn clean package
+                '''
             }
         }
 
         stage('Deploy') {
             steps {
-                // Deploy the application
-                bat 'echo Deploying the application'
+                sh 'echo "Deploy stage completed"'
             }
         }
     }
 }
+
